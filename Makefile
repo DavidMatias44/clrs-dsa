@@ -3,7 +3,7 @@ CXXFLAGS=-c -g -std=c++17
 OBJDIR=build
 SRCDIR=src
 
-OBJS=$(OBJDIR)/main.o 
+OBJS=$(OBJDIR)/main.o $(OBJDIR)/sorting.o
 OUTPUT=output
 
 $(OUTPUT): $(OBJS)
@@ -11,6 +11,9 @@ $(OUTPUT): $(OBJS)
 
 $(OBJDIR)/main.o: $(SRCDIR)/main.cpp | $(OBJDIR)
 	$(CXX) $(CXXFLAGS) $(SRCDIR)/main.cpp -o $(OBJDIR)/main.o
+
+$(OBJDIR)/sorting.o: $(SRCDIR)/sorting.cpp | $(OBJDIR)
+	$(CXX) $(CXXFLAGS) $(SRCDIR)/sorting.cpp -o $(OBJDIR)/sorting.o
 
 $(OBJDIR):
 	mkdir -p $(OBJDIR)

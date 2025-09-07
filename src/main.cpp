@@ -9,7 +9,13 @@ int main(void)
     }
     std::cout << std::endl;
 
-    insertionSort(v);
+    // insertionSort(v);
+    // for (auto& e : v) {
+    //     std::cout << e << " ";
+    // }
+    // std::cout << std::endl;
+
+    mergeSort(v, 0, v.size() - 1);
     for (auto& e : v) {
         std::cout << e << " ";
     }

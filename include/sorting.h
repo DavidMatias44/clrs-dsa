@@ -4,5 +4,7 @@
 #include<vector>
 
 void insertionSort(std::vector<int>&);
+void mergeSort(std::vector<int>&, int, int);
+void merge(std::vector<int>&, int, int, int);
 
 #endif // SORTING_H

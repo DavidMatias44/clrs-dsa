@@ -1,3 +1,4 @@
+#include "../include/heap.h"
 #include "../include/sorting.h"
 #include <cmath>
 
@@ -50,4 +51,17 @@ void merge(std::vector<int>& v, int start, int mid, int end)
         else
             v[k] = right[j++];
     }
+}
+
+void heapSort(std::vector<int>& v)
+{
+    Heap heap(v);
+
+    for (int i = heap.heapSize - 1; i >= 1; i--) {
+        heap.swap(0, i);
+        heap.heapSize--;
+        heap.maxHeapify(0);
+    }
+
+    v = heap.v;
 }

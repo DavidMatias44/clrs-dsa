@@ -50,3 +50,8 @@ void Heap::swap(int i, int j)
     v[i] = v[j];
     v[j] = temp;
 }
+
+int Heap::parent(int index)
+{
+    return  (index - 1) / 2;
+}

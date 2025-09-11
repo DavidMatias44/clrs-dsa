@@ -1,5 +1,6 @@
 #include <iostream>
 #include "../include/sorting.h"
+#include "../include/priorityQueue.h"
 
 int main(void)
 {
@@ -9,22 +10,27 @@ int main(void)
     }
     std::cout << std::endl;
 
-    // insertionSort(v);
-    // for (auto& e : v) {
-    //     std::cout << e << " ";
-    // }
-    // std::cout << std::endl;
+    PriorityQueue pq(v);
 
-    // mergeSort(v, 0, v.size() - 1);
-    // for (auto& e : v) {
-    //     std::cout << e << " ";
-    // }
-    // std::cout << std::endl;
+    pq.print();
+    std::cout << std::endl;
 
-    heapSort(v);
-    for (auto& e : v) {
-        std::cout << e << " ";
-    }
+    int pqMax = pq.extractMax();
+    std::cout << "max: " << pqMax << std::endl;
+    pq.print();
+    std::cout << std::endl;
+
+    pq.insert(112);
+    pq.print();
+    std::cout << std::endl;
+
+    pq.insert(28);
+    pq.print();
+    std::cout << std::endl;
+
+    pqMax = pq.extractMax();
+    std::cout << "max: " << pqMax << std::endl;
+    pq.print();
     std::cout << std::endl;
 
     return 0;

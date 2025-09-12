@@ -65,3 +65,33 @@ void heapSort(std::vector<int>& v)
 
     v = heap.v;
 }
+
+void quickSort(std::vector<int>& v, int start, int end)
+{
+    if (start < end) {
+        int q = partition(v, start, end);
+        quickSort(v, start, q - 1);
+        quickSort(v, q + 1, end);
+    }
+}
+
+int partition(std::vector<int>& v, int start, int end)
+{
+    int x = v[end];
+    int i = start - 1;
+    for (int j = start; j < end; j++) {
+        if (v[j] < x) {
+            swap(v, ++i, j);
+        }
+    }
+    swap(v, ++i, end);
+
+    return i;
+}
+
+void swap(std::vector<int>& v, int i, int j)
+{
+    int temp = v[i];
+    v[i] = v[j];
+    v[j] = temp;
+}

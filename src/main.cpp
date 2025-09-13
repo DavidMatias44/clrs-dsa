@@ -10,7 +10,7 @@ int main(void)
     }
     std::cout << std::endl;
 
-    quickSort(v, 0, v.size() - 1);
+    randomizedQuickSort(v, 0, v.size() - 1);
     for (auto& e : v) {
         std::cout << e << " ";
     }

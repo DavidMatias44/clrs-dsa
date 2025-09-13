@@ -89,6 +89,22 @@ int partition(std::vector<int>& v, int start, int end)
     return i;
 }
 
+void randomizedQuickSort(std::vector<int>& v, int start, int end)
+{
+    if (start < end) {
+        int q = randomizedPartition(v, start, end);
+        randomizedQuickSort(v, start, q - 1);
+        randomizedQuickSort(v, q + 1, end);
+    }
+}
+
+int randomizedPartition(std::vector<int>& v, int start, int end)
+{
+    int i = rand() % (end + 1);
+    swap(v, i, end);
+    return partition(v, start, end);
+}
+
 void swap(std::vector<int>& v, int i, int j)
 {
     int temp = v[i];

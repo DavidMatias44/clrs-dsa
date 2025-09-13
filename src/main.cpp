@@ -4,14 +4,15 @@
 
 int main(void)
 {
-    std::vector<int> v = {31, 41, 59, 26, 41, 58};
+    std::vector<int> v = { 6, 0, 2, 0, 1, 3, 4, 6, 1, 3, 2};
     for (auto& e : v) {
         std::cout << e << " ";
     }
     std::cout << std::endl;
 
-    randomizedQuickSort(v, 0, v.size() - 1);
-    for (auto& e : v) {
+    std::vector<int> sol;
+    countingSort(v, sol, 6);
+    for (auto& e : sol) {
         std::cout << e << " ";
     }
     std::cout << std::endl;

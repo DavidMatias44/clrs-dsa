@@ -1,6 +1,7 @@
 #include "../include/heap.h"
 #include "../include/sorting.h"
 #include <cmath>
+#include <iostream>
 
 void insertionSort(std::vector<int>& v)
 {
@@ -110,4 +111,26 @@ void swap(std::vector<int>& v, int i, int j)
     int temp = v[i];
     v[i] = v[j];
     v[j] = temp;
+}
+
+void countingSort(std::vector<int>& v, std::vector<int>& w, int k)
+{
+    std::vector<int> c;
+    for (int i = 0; i <= k; i++) {
+        c.push_back(0);
+    }
+
+    for (int j = 0; j < v.size(); j++) {
+        c[v[j]]++;
+        w.push_back(0);
+    }
+    
+    for (int i = 1; i <= k; i++) {
+        c[i] = c[i] + c[i - 1];
+    }
+    
+    for (int j = v.size() - 1; j >= 0; j--) {
+        w[ c[v[j]] - 1 ] = v[j];
+        c[v[j]]--;
+    }
 }

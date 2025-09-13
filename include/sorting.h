@@ -18,4 +18,6 @@ int randomizedPartition(std::vector<int>&, int, int);
 
 void swap(std::vector<int>&, int, int);
 
+void countingSort(std::vector<int>&, std::vector<int>&, int);
+
 #endif // SORTING_H

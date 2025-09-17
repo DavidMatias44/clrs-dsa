@@ -3,7 +3,8 @@
 
 #include<vector>
 
-void insertionSort(std::vector<int>&);
+template <typename T>
+void insertionSort(std::vector<T>&);
 
 void mergeSort(std::vector<int>&, int, int);
 void merge(std::vector<int>&, int, int, int);

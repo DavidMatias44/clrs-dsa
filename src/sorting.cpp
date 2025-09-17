@@ -113,24 +113,55 @@ void swap(std::vector<int>& v, int i, int j)
     v[j] = temp;
 }
 
-void countingSort(std::vector<int>& v, std::vector<int>& w, int k)
-{
+void countingSort(std::vector<int>& v, std::vector<int>& w, int k, int e)
+{   
     std::vector<int> c;
     for (int i = 0; i <= k; i++) {
         c.push_back(0);
     }
 
-    for (int j = 0; j < v.size(); j++) {
-        c[v[j]]++;
-        w.push_back(0);
+    if (e < 1) {
+        for (int j = 0; j < v.size(); j++) {
+            c[v[j]]++;
+            w.push_back(0);
+        }
+        
+        for (int i = 1; i <= k; i++) {
+            c[i] = c[i] + c[i - 1];
+        }
+        
+        for (int j = v.size() - 1; j >= 0; j--) {
+            w[ c[v[j]] - 1 ] = v[j];
+            c[v[j]]--;
+        }
+
+        return;
     }
-    
+
+    for (int j = 0; j < v.size(); j++) {
+        c[ (v[j] / e) % k ]++;
+        if (w.size() < v.size())
+            w.push_back(0);
+    }
+
     for (int i = 1; i <= k; i++) {
         c[i] = c[i] + c[i - 1];
     }
-    
+
     for (int j = v.size() - 1; j >= 0; j--) {
-        w[ c[v[j]] - 1 ] = v[j];
-        c[v[j]]--;
+        int pos = (v[j] / e) % k;
+        w[ c[pos] - 1 ] = v[j];
+        c[pos]--;
+    }
+}
+
+void radixSort(std::vector<int>& v, std::vector<int>& w, int d)
+{
+    for (int i = 1; i < pow(10, d); i *= 10) {
+        countingSort(v, w, 10, i);
+        
+        for (int i = 0; i < v.size(); i++) {
+            v[i] = w[i];
+        }
     }
 }

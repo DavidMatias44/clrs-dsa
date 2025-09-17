@@ -3,10 +3,11 @@
 #include <cmath>
 #include <iostream>
 
-void insertionSort(std::vector<int>& v)
+template <typename T>
+void insertionSort(std::vector<T>& v)
 {
     for (int j = 1; j < v.size(); j++) {
-        int key = v[j];
+        T key = v[j];
         int i = j - 1;
 
         while (i >= 0 && v[i] > key) {
@@ -162,6 +163,28 @@ void radixSort(std::vector<int>& v, std::vector<int>& w, int d)
         
         for (int i = 0; i < v.size(); i++) {
             v[i] = w[i];
+        }
+    }
+}
+
+void bucketSort(std::vector<float>& v)
+{
+    std::vector<std::vector<float>> w {0};
+    int n = v.size();
+
+    for (int i = 0; i < n; i++) {
+        w.emplace_back();
+    }
+
+    for (int i =0; i < n; i++) {
+        w[ floor(n * v[i]) ].push_back(v[i]);
+    }
+
+    v.clear();
+    for (int i = 0; i < n; i++) {
+        insertionSort(w[i]);
+        for (auto& e : w[i]) {
+            v.push_back(e);
         }
     }
 }

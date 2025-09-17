@@ -22,4 +22,6 @@ void countingSort(std::vector<int>&, std::vector<int>&, int, int=0);
 
 void radixSort(std::vector<int>&, std::vector<int>&, int);
 
+void bucketSort(std::vector<float>&);
+
 #endif // SORTING_H

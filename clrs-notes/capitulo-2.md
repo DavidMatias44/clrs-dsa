@@ -30,10 +30,7 @@ Es una abstracción que simplifica los "costos", es decir, se ignoran:
 - Términos de bajo orden.
 - Términos constantes.
 
-Esto porque son insignificantes, pueden despreciarse. Entonces: 
-$$
-\frac{n^3}{100} + 100n + 3 \to n^3
-$$
+Esto porque son insignificantes, pueden despreciarse. Entonces: $ \frac{n^3}{100} + 100n + 3 \to n^3 $
 
 ## Divide y vencerás
 Consta de tres pasos:
@@ -91,30 +88,29 @@ Cuando un algoritmo se llama a sí mismo de manera recursiva su **running time**
 
 Sea $T(n)$ el **running time** de n-elementos (para el caso donde el problema sea lo suficientemente pequeño la solución toma tiempo constanste: $\Theta(1)$), suponiendo que la división del problema genera $a$ sub-problemas de tamaño $\frac{n}{b}$ (para merge sort: $a=2$ y $b=2$).
 Entonces se están resolviendo $a$-subproblemas de tamaño $\frac{n}{b}$, esto se puede expresar como: $aT(\frac{n}{b})$, además se considera el tiempo destinado para dividir el problema: $D(n)$ y para combinar los sub-problemas: $C(n)$.
-Resultando en:
-$$
+Resultando en: $
 T(n) = 
 \begin{cases}
     \Theta(1) & \text{si } n \leq c \\
     aT(\frac{n}{b}) + D(n) + C(n) & \text{en otro caso}
 \end{cases}
-$$
+$
 
 En el caso particular de **merge sort**: 
 - Dividir el problema toma tiempo constante, solo es calcular el índice $q$, entonces: $D(n) = \Theta(1)$.
 - Resolver los sub-problemas toma: $2T(\frac{n}{2})$, porque: $a=2$ y $b=2$.
 - Para hacer el **merge**, es decir, combinar los sub-problemas toma: $C(n)=\Theta(n)$, porque se consulta cada elemento del problema.
 
-Resultando esto en la ecuación de recurrencia para el peor caso de merge sort:
-$$
+Resultando esto en la ecuación de recurrencia para el peor caso de merge sort: 
+$
 T(n)=
 \begin{cases}
     \Theta(1) & \text{si n = 1} \\
     2T(\frac{n}{2}) + \Theta(n) & \text{si n > 1}
 \end{cases}
-$$
+$
 
-Si se elabora un árbol de recurrencia, se tiene que dicho árbol tiene $log_2(n) + 1$ niveles, siendo que cada nivel suma: $cn$, podemos obtener la complejidad temporal de merge sort:
-$$
-cn(log_2(n) + 1) = cnlog_2(n)+cn \to \Theta(nlog_2(n))
-$$
+Si se elabora un árbol de recurrencia, se tiene que dicho árbol tiene $lg(n) + 1$ niveles, siendo que cada nivel suma: $cn$, podemos obtener la complejidad temporal de merge sort:
+$
+cn(lg(n) + 1) = cnlg(n)+cn \to \Theta(nlg(n))
+$

@@ -3,33 +3,41 @@
 #include "../include/priorityQueue.h"
 #include "../include/algorithms.h"
 #include "../include/stack.h"
+#include "../include/queue.h"
 
 int main(void)
 {
-    Stack s(5);
+    Queue q(4);
 
-    std::cout << "stack is empty: " << s.isEmpty() << std::endl;
-    s.print();
+    q.enqueue(1);
+    q.print();
+    q.enqueue(2);
+    q.print();
+    q.enqueue(3);
+    q.print();
+    q.enqueue(4);
+    q.print();
+    q.enqueue(5);
+    q.print();
 
-    s.pop();
+    q.dequeue();
+    q.print();
 
-    s.push(12);
-    s.push(23);
-    s.push(65);
-    s.push(82);
-    s.push(92);
-    s.push(23);
-    s.print();
+    q.enqueue(6);
+    q.print();
+    q.enqueue(7);
+    q.print();
 
-    s.pop();
-    s.pop();
-    s.print();
-
-    s.pop();
-    s.pop();
-    s.pop();
-    s.print();
-    s.pop();
+    q.dequeue();
+    q.print();
+    q.dequeue();
+    q.print();
+    q.dequeue();
+    q.print();
+    q.dequeue();
+    q.print();
+    q.dequeue();
+    q.print();
 
     return 0;
 }

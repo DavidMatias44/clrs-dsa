@@ -3,7 +3,7 @@ CXXFLAGS=-c -g -std=c++17
 OBJDIR=build
 SRCDIR=src
 
-OBJS=$(OBJDIR)/main.o $(OBJDIR)/sorting.o $(OBJDIR)/heap.o $(OBJDIR)/priorityQueue.o
+OBJS=$(OBJDIR)/main.o $(OBJDIR)/sorting.o $(OBJDIR)/heap.o $(OBJDIR)/priorityQueue.o $(OBJDIR)/algorithms.o
 OUTPUT=output
 
 $(OUTPUT): $(OBJS)
@@ -20,6 +20,9 @@ $(OBJDIR)/heap.o: $(SRCDIR)/heap.cpp | $(OBJDIR)
 
 $(OBJDIR)/priorityQueue.o: $(SRCDIR)/priorityQueue.cpp | $(OBJDIR)
 	$(CXX) $(CXXFLAGS) $(SRCDIR)/priorityQueue.cpp -o $(OBJDIR)/priorityQueue.o
+
+$(OBJDIR)/algorithms.o: $(SRCDIR)/algorithms.cpp | $(OBJDIR)
+	$(CXX) $(CXXFLAGS) $(SRCDIR)/algorithms.cpp -o $(OBJDIR)/algorithms.o
 
 $(OBJDIR):
 	mkdir -p $(OBJDIR)

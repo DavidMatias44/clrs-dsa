@@ -2,18 +2,34 @@
 #include "../include/sorting.h"
 #include "../include/priorityQueue.h"
 #include "../include/algorithms.h"
+#include "../include/stack.h"
 
 int main(void)
 {
-    std::vector<int> v = { 534, 5, 15, 54, 25, 18, 12, 3, 6 };
-    for (auto& e : v) {
-        std::cout << e << " ";
-    }
-    std::cout << std::endl;
+    Stack s(5);
 
-    std::cout << "minimum: " << minimum(v) << std::endl;
-    std::cout << "maximum: " << maximum(v) << std::endl;
-    std::cout << "3th smaller: " << randomizedSelect(v, 0, v.size() - 1, 3) << std::endl;;
+    std::cout << "stack is empty: " << s.isEmpty() << std::endl;
+    s.print();
+
+    s.pop();
+
+    s.push(12);
+    s.push(23);
+    s.push(65);
+    s.push(82);
+    s.push(92);
+    s.push(23);
+    s.print();
+
+    s.pop();
+    s.pop();
+    s.print();
+
+    s.pop();
+    s.pop();
+    s.pop();
+    s.print();
+    s.pop();
 
     return 0;
 }

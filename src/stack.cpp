@@ -13,7 +13,7 @@ Stack::Stack(int n)
 
 bool Stack::isEmpty()
 {
-    return top == -1;
+    return size == 0;
 }
 
 bool Stack::isFull()

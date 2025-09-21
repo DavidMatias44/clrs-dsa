@@ -5,37 +5,44 @@
 #include "../include/stack.h"
 #include "../include/queue.h"
 #include "../include/linkedList.h"
+#include "../include/BST.h"
 
 int main(void)
 {
-    LinkedList l;
-    std::cout << "list size: " << l.size;
-    l.print();
+    BST t;
+    t.print(t.root);
 
-    l.insertKey(1);
-    std::cout << "list size: " << l.size << " | ";
-    l.print();
-    l.insertKey(2);
-    std::cout << "list size: " << l.size << " | ";
-    l.print();
-    l.insertKey(4);
-    std::cout << "list size: " << l.size << " | ";
-    l.print();
-
+    t.insertKey(50);
+    t.insertKey(30);
+    t.insertKey(20);
+    t.insertKey(40);
+    t.insertKey(70);
+    t.insertKey(60);
+    t.insertKey(80);
+    t.print(t.root);
     std::cout << std::endl;
 
-    l.deleteKey(3);
-    std::cout << "list size: " << l.size << " | ";
-    l.print();
-    l.deleteKey(2);
-    std::cout << "list size: " << l.size << " | ";
-    l.print();
-    l.deleteKey(2);
-    std::cout << "list size: " << l.size << " | ";
-    l.print();
-    l.deleteKey(1);
-    std::cout << "list size: " << l.size << " | ";
-    l.print();
+    t.deleteKey(60);
+    t.print(t.root);
+    std::cout << std::endl;
+
+    t.deleteKey(70);
+    t.print(t.root);
+    std::cout << std::endl;
+
+    t.deleteKey(30);
+    t.print(t.root);
+    std::cout << std::endl;
+
+    t.insertKey(90);
+    t.insertKey(100);
+    t.print(t.root);
+    std::cout << std::endl;
+
+    t.insertKey(10);
+    t.insertKey(5);
+    t.print(t.root);
+    std::cout << std::endl;
 
     return 0;
 }

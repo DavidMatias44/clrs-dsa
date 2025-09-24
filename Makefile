@@ -3,7 +3,7 @@ CXXFLAGS=-c -g -std=c++17
 OBJDIR=build
 SRCDIR=src
 
-OBJS=$(OBJDIR)/main.o $(OBJDIR)/sorting.o $(OBJDIR)/heap.o $(OBJDIR)/priorityQueue.o $(OBJDIR)/algorithms.o $(OBJDIR)/stack.o $(OBJDIR)/queue.o $(OBJDIR)/linkedList.o $(OBJDIR)/BST.o
+OBJS=$(OBJDIR)/main.o $(OBJDIR)/redBlackTrees/RBT.o $(OBJDIR)/redBlackTrees/RBTNode.o $(OBJDIR)/redBlackTrees/color.o
 OUTPUT=output
 
 $(OUTPUT): $(OBJS)
@@ -36,8 +36,20 @@ $(OBJDIR)/linkedList.o: $(SRCDIR)/linkedList.cpp | $(OBJDIR)
 $(OBJDIR)/BST.o: $(SRCDIR)/BST.cpp | $(OBJDIR)
 	$(CXX) $(CXXFLAGS) $(SRCDIR)/BST.cpp -o $(OBJDIR)/BST.o
 
+$(OBJDIR)/redBlackTrees/RBT.o: $(SRCDIR)/redBlackTrees/RBT.cpp | $(OBJDIR)/redBlackTrees
+	$(CXX) $(CXXFLAGS) $(SRCDIR)/redBlackTrees/RBT.cpp -o $(OBJDIR)/redBlackTrees/RBT.o
+
+$(OBJDIR)/redBlackTrees/RBTNode.o: $(SRCDIR)/redBlackTrees/RBTNode.cpp
+	$(CXX) $(CXXFLAGS) $(SRCDIR)/redBlackTrees/RBTNode.cpp -o $(OBJDIR)/redBlackTrees/RBTNode.o
+
+$(OBJDIR)/redBlackTrees/color.o: $(SRCDIR)/redBlackTrees/color.cpp
+	$(CXX) $(CXXFLAGS) $(SRCDIR)/redBlackTrees/color.cpp -o $(OBJDIR)/redBlackTrees/color.o
+
 $(OBJDIR):
 	mkdir -p $(OBJDIR)
+
+$(OBJDIR)/redBlackTrees:
+	mkdir -p $(OBJDIR)/redBlackTrees
 
 clean:
 	rm -f $(OBJDIR)/*.o $(OUTPUT)

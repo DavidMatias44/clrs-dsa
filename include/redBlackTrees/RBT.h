@@ -7,16 +7,18 @@
 class RBT
 {
 private:
+    RBTNode* nil;
     void insertNode(RBTNode*);
     void insertNodeFixup(RBTNode*);
-    void deleteNode(RBTNode*);
-    void deleteNodeFixup(RBTNode*);
-    void transplant(RBTNode*, RBTNode*);
     void rotateLeft(RBTNode*);
     void rotateRight(RBTNode*);
+    RBTNode* searchKey(RBTNode*, int);
+    void deleteNode(RBTNode*);
+    void transplant(RBTNode*, RBTNode*);
+    RBTNode* minimum(RBTNode*);
+    void deleteNodeFixup(RBTNode*);
 public:
     RBTNode* root;
-    RBTNode* nil;
     RBT();
     void insertKey(int);
     void deleteKey(int);

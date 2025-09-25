@@ -6,9 +6,9 @@ RBT::RBT()
     root = nil;
 }
 
-void RBT::insertKey(int data)
+void RBT::insertKey(int key)
 {
-    RBTNode* z = new RBTNode(data);
+    RBTNode* z = new RBTNode(key);
     insertNode(z);
 }
 
@@ -124,6 +124,142 @@ void RBT::rotateRight(RBTNode* x)
     x->parent = y;
 }
 
+void RBT::deleteKey(int key) 
+{
+    RBTNode* n = searchKey(root, key);
+    deleteNode(n);
+}
+
+RBTNode* RBT::searchKey(RBTNode* n, int key)
+{
+    if (n == nil || key == n->data) {
+        return n;
+    }
+
+    if (key < n->data) {
+        return searchKey(n->left, key);
+    } 
+    return searchKey(n->right, key);
+}
+
+void RBT::deleteNode(RBTNode* z)
+{
+    RBTNode* y = z;
+    Color yOriginalColor = y->color;
+    RBTNode* x = nil;
+
+    if (z->left == nil) {
+        x = z->right;
+        transplant(z, z->right);
+    } else if (z->right == nil) {
+        x = z->left;
+        transplant(z, z->left);
+    } else {
+        y = minimum(z->right);
+        yOriginalColor = y->color;
+        x = y->right;
+
+        if (y->parent == z) {
+            x->parent = y;
+        } else {
+            transplant(y, y->right);
+            y->right = z->right;
+            y->right->parent = y;
+        }
+        transplant(z, y);
+        y->left = z->left;
+        y->left->parent = y;
+        y->color = z->color;
+    }
+
+    if (yOriginalColor == Color::BLACK) {
+        deleteNodeFixup(x);
+    }
+}
+
+RBTNode* RBT::minimum(RBTNode* n)
+{
+    if (n->left == nil) {
+        return n;
+    }
+    
+    return minimum(n->left);
+}
+
+void RBT::transplant(RBTNode* u, RBTNode* v)
+{
+    if (u->parent == nil) {
+        root = v;
+    } else if (u == u->parent->left) {
+        u->parent->left = v;
+    } else {
+        u->parent->right = v;
+    }
+    v->parent = u->parent;
+}
+
+void RBT::deleteNodeFixup(RBTNode* x)
+{
+    while (x != root && x->color == Color::BLACK) {
+        if (x == x->parent->left) {
+            RBTNode* w = x->parent->right;
+
+            if (w->color == Color::RED) {
+                w->color = Color::BLACK;
+                x->parent->color = Color::RED;
+                rotateLeft(x->parent);
+                w = x->parent->right;
+            }
+
+            if (w->left->color == Color::BLACK && w->right->color == Color::BLACK) {
+                w->color = Color::RED;
+                x = x->parent;
+            } else {
+                if (w->right->color == Color::BLACK) {
+                    w->left->color = Color::BLACK;
+                    w->color = Color::RED;
+                }
+
+                rotateRight(w);
+                w = x->parent->right;
+                w->color = x->parent->color;
+                x->parent->color = Color::BLACK;
+                w->right->color = Color::BLACK;
+                rotateLeft(x->parent);
+                x = root;
+            }
+        } else {
+            RBTNode* w = x->parent->left;
+
+            if (w->color == Color::RED) {
+                w->color = Color::BLACK;
+                x->parent->color = Color::RED;
+                rotateRight(x->parent);
+                w = x->parent->left;
+            }
+
+            if (w->right->color == Color::BLACK && w->left->color == Color::BLACK) {
+                w->color = Color::RED;
+                x = x->parent;
+            } else {
+                if (w->left->color == Color::BLACK) {
+                    w->right->color = Color::BLACK;
+                    w->color = Color::RED;
+                }
+
+                rotateLeft(w);
+                w = x->parent->left;
+                w->color = x->parent->color;
+                x->parent->color = Color::BLACK;
+                w->left->color = Color::BLACK;
+                rotateRight(x->parent);
+                x = root;
+            }
+        }
+    }
+
+    x->color = Color::BLACK;
+}
 
 void RBT::print(RBTNode* n) 
 {

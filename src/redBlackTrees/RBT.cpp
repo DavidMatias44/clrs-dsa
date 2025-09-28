@@ -218,10 +218,10 @@ void RBT::deleteNodeFixup(RBTNode* x)
                 if (w->right->color == Color::BLACK) {
                     w->left->color = Color::BLACK;
                     w->color = Color::RED;
+                    rotateRight(w);
+                    w = x->parent->right;
                 }
 
-                rotateRight(w);
-                w = x->parent->right;
                 w->color = x->parent->color;
                 x->parent->color = Color::BLACK;
                 w->right->color = Color::BLACK;

@@ -1,4 +1,4 @@
-#include "../../include/insertionSort.h"
+#include "../../include/sorting/insertionSort.h"
 #include "../../include/utils.h"
 
 int main(void)

@@ -1,10 +1,7 @@
 #ifndef SORTING_H
 #define SORTING_H
 
-#include<vector>
-
-template <typename T>
-void insertionSort(std::vector<T>&);
+#include <vector>
 
 void mergeSort(std::vector<int>&, int, int);
 void merge(std::vector<int>&, int, int, int);

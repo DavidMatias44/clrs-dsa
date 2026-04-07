@@ -15,7 +15,7 @@ public:
 
 
 #ifndef BST_H
-#define BST_Hs
+#define BST_H
 
 #include <iostream>
 
@@ -37,3 +37,4 @@ public:
 };
 
 #endif // BST_H
+

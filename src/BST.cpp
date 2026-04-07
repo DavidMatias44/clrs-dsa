@@ -39,6 +39,10 @@ void BST::insertNode(BSTNode* n)
 void BST::deleteKey(int data)
 {
     BSTNode* n = searchKey(root, data);
+    if (n == nullptr) {
+        std::cout << "Unable to delete key, the tree is empty." << std::endl;
+        return;
+    }
     deleteNode(n);
 }
 

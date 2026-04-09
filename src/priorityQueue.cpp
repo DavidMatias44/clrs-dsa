@@ -7,13 +7,19 @@ PriorityQueue::PriorityQueue(std::vector<int>& v) : Heap(v)
 
 int PriorityQueue::maximum()
 {
+    if (heapSize < 1) {
+        std::cout << "Error: the priority queue is empty" << std::endl;
+        return std::numeric_limits<int>::min();
+    }
+
     return v[0];
 }
 
 int PriorityQueue::extractMax()
 {
     if (heapSize < 1) {
-        std::cout << "Error: heap underflow";
+        std::cout << "Error: the priority queue is empty" << std::endl;
+        return std::numeric_limits<int>::min();
     }
 
     int max = v[0];
@@ -26,7 +32,7 @@ int PriorityQueue::extractMax()
 void PriorityQueue::increaseKey(int index, int key)
 {
     if (key < v[index]) {
-        std::cout << "Error: new key is smaller than current key";
+        std::cout << "Error: new key is smaller than current key" << std::endl;
     }
 
     v[index] = key;
@@ -47,10 +53,3 @@ void PriorityQueue::insert(int key)
     heapSize++;
 }
 
-void PriorityQueue::print()
-{
-    for (int i = 0; i < heapSize; i++) {
-        std::cout << v[i] << " ";
-    }
-    std::cout << std::endl;
-}

@@ -36,12 +36,12 @@ void Heap::maxHeapify(int index)
 
 int Heap::left(int index)
 {
-    return 2 * index + 1;
+    return 2*index + 1;
 }
 
 int Heap::right(int index)
 {
-    return 2 * index + 2;
+    return 2*index + 2;
 }
 
 void Heap::swap(int i, int j)
@@ -53,5 +53,5 @@ void Heap::swap(int i, int j)
 
 int Heap::parent(int index)
 {
-    return  (index - 1) / 2;
+    return (index - 1) / 2;
 }
